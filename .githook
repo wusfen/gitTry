@@ -13,7 +13,14 @@ fi
 # files
 files=`git diff --cached --name-only | grep -E '(.js|vue)$'`
 
+
 # -deleted
+for file in $files; do
+  if [ ! -f "$file" ]; then
+    files=${files//$file/""}
+  fi
+done
+
 
 # no files to eslint
 if [ -z "$files" ]; then
@@ -22,20 +29,27 @@ fi
 
 
 # fix
-rs=$($eslint $files --fix --format visualstudio)
 # add again
-git add $files
-# problems
 rs=$($eslint $files --fix --format visualstudio)
-# print
-echo "$rs"
-# tip
-if [[ "$rs" = *": warning"* ]]; then
-  echo -e "\033[33mWARNING\033[0m"
-fi
-if [[ "$rs" = *": error"* ]]; then
-  echo -e "\033[31mERROR\033[0m 提交失败，请修复error再提交!"
+git add $files
+
+
+# echo error warning with color
+rs=${rs//": error "/"\033[31m [error] \033[0m"}
+rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
+echo -e "$rs"
+
+
+# reject
+if [[ "$rs" = *"[error]"* ]]; then
+  echo -e "\033[31m"
+  echo "代码不规范，队友泪两行。"
+  echo "请修复error再提交！"
+  echo -e "\033[0m"
   exit 1
 fi
+
+
 # success
 echo "提交成功"
+# exit 1
