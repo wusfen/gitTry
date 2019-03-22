@@ -1,2 +1,2 @@
-console.warn('index')
+console.log('index')
   
