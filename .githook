@@ -38,12 +38,12 @@ git add $files
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
 rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
 echo -e "$rs"
+echo
 
 
 # reject
 # if [[ "$rs" = *"[error]"* ]]; then
 #   echo -e "\033[31m"
-#   echo "代码不规范，队友泪两行。"
 #   echo "请修复error再提交！"
 #   echo -e "\033[0m"
 #   exit 1
