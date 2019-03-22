@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "this is .hook file"
+
+exit 0
