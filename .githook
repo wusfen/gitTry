@@ -1,28 +1,33 @@
 #!/usr/bin/env bash
 
-files=`git diff --cached --name-only`
-# files=`git status -s`
-# echo "$files"
-
-files="abc   efg"
-for item in $files; do
-  echo "$item"
-done
-
-
-
-# eslint
+# eslint exists
 eslint="./node_modules/.bin/eslint"
 if [ ! -f "$eslint" ]; then
   eslint="eslint"
   if [ ! -n "$(command -v eslint)" ]; then
-    eslint=""
+    exit 0
   fi
 fi
 
-if [ -n "$eslint" ] && [ -n "$files" ]; then
-  echo eslint ok
+
+# files
+files=`git diff --cached --name-only | grep -E '(.js|vue)$'`
+# fix
+rs=$($eslint $files --fix --format visualstudio)
+# add again
+git add $files
+# problems
+rs=$($eslint $files --fix --format visualstudio)
+# print
+echo "$rs"
+
+if [[ "$rs" = *": warning"* ]]; then
+  echo -e "\033[33mWARNING\033[0m"
+fi
+if [[ "$rs" = *": error"* ]]; then
+  echo -e "\033[31mERROR\033[0m 提交失败，请修复error再提交!"
+  exit 1
 fi
 
-
-exit 1
+echo "提交成功"
+exit 0
