@@ -42,12 +42,8 @@ rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
 
 # # reject
 if [[ "$rs" = *"[error]"* ]]; then
-  echo
   echo -e "$rs"
-  echo -e "\033[31m"
-  echo "eslint error"
-  echo -e "\033[0m"
-
+  echo -e "\033[31mERROR\033[0m"
   exit 1
 fi
 
