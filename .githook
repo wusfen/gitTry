@@ -37,13 +37,13 @@ git add $files
 
 # echo error warning with color
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
-rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
+# rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
 
 
 # # reject
 if [[ "$rs" = *"[error]"* ]]; then
   echo -e "$rs"
-  echo -e "\033[31mERROR\033[0m"
+  echo -e "\033[31m  ERROR  \033[0m"
   exit 1
 fi
 
