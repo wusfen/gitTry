@@ -1,2 +1,1 @@
 'abc'
-console.log('index')

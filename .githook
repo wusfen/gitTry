@@ -5,6 +5,7 @@ eslint="./node_modules/.bin/eslint"
 if [ ! -f "$eslint" ]; then
   eslint="eslint"
   if [ ! -n "$(command -v eslint)" ]; then
+    # has not eslint
     exit 0
   fi
 fi
@@ -22,7 +23,7 @@ for file in $files; do
 done
 
 
-# no files to eslint
+# has not files to eslint
 if [ -z "$files" ]; then
   exit 0
 fi
@@ -37,19 +38,21 @@ git add $files
 # echo error warning with color
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
 rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
-echo -e "$rs"
-echo
 
 
-# reject
-# if [[ "$rs" = *"[error]"* ]]; then
-#   echo -e "\033[31m"
-#   echo "请修复error再提交！"
-#   echo -e "\033[0m"
-#   exit 1
-# fi
+# # reject
+if [[ "$rs" = *"[error]"* ]]; then
+  echo
+  echo -e "$rs"
+  echo -e "\033[31m"
+  echo "fix error please！"
+  echo -e "\033[0m"
+
+  # exit 1
+fi
 
 
-# success
+# # success
 # echo "提交成功"
+
 # exit 1
