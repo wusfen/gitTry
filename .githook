@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+files=`git diff --cached --name-only`
+# files=`git status -s`
+# echo "$files"
+
+files="abc   efg"
+for item in $files; do
+  echo "$item"
+done
+
+
+
+# eslint
+eslint="./node_modules/.bin/eslint"
+if [ ! -f "$eslint" ]; then
+  eslint="eslint"
+  if [ ! -n "$(command -v eslint)" ]; then
+    eslint=""
+  fi
+fi
+
+if [ -n "$eslint" ] && [ -n "$files" ]; then
+  echo eslint ok
+fi
+
+
+exit 1

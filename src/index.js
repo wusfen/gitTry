@@ -1,2 +1,1 @@
-      console.log('index')
-      1
+console.warn('index')
