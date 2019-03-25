@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # eslint exists
 eslint="./node_modules/.bin/eslint"
 if [ ! -f $eslint ]; then
@@ -20,18 +21,20 @@ files=$(git diff --cached --name-only | egrep "(.js|vue)$")
 
 # -deleted
 for file in $files; do
-  if [[ ! -f $file ]]; then
-    files=${files//$file/""}
+  if [ ! -f $file ]; then
+    files=$(echo "$files" | egrep -v "^$file$")
   fi
 done
 
 
 # has not files to eslint
-if [[ -z $files ]]; then
+files=$(echo "$files" | egrep -v "^$")
+if [ -z $files ]; then
   echo "has not files to eslint"
   exit 0
 fi
 
+exit 1
 
 # fix
 # add again
