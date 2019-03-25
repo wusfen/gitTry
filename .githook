@@ -46,6 +46,9 @@ git add $files
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
 # rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
 
+echo -e "$rs"
+exit 1
+
 
 # # reject
 if [[ "$rs" = *"[error]"* ]]; then
