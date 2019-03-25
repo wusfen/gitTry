@@ -36,13 +36,17 @@ fi
 # fix
 # add again
 rs=$($eslint $files --fix --format visualstudio)
+rs=$(egrep $rs "error")
+
+echo "$rs"
+exit 1
+
 git add $files
 
 
 # echo error warning with color
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
 # rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
-
 
 
 # # reject
