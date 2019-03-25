@@ -1,4 +1,4 @@
-const a = 1,
-  b = '2',
-  c = a + b
+var a= 1
+var b ='2'
+var c = a+b
 console.log(c)
