@@ -34,7 +34,7 @@ module.exports = {
     // 多空格
     "no-multi-spaces": [1],
     // 操作符旁空格
-    "space-infix-ops": [1],
+    "space-infix-ops": [1], 
     // 尾空格
     "no-trailing-spaces": [1],
     // 多空行
