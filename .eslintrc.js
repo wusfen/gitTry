@@ -31,9 +31,11 @@ module.exports = {
       1,
       "never"
     ],
+    // 多空格
+    "no-multi-spaces": [1],
     // 尾空格
     "no-trailing-spaces": [1],
-    // 空行
+    // 多空行
     "no-multiple-empty-lines": [1, {max: 3}],
     // 引号
     "quotes": [
