@@ -13,7 +13,7 @@ module.exports = {
     "vue"
   ],
   "extends": [
-    "eslint:all",
+    "eslint:recommended",
     // eslint-plugin-vue ***
     // "plugin:vue/base",
     "plugin:vue/essential",
