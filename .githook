@@ -36,11 +36,7 @@ fi
 # fix
 # add again
 rs=$($eslint $files --fix --format visualstudio)
-rs=$(egrep $rs "error")
-
-echo "$rs"
-exit 1
-
+rs=$(cat "$rs" | egrep "error")
 git add $files
 
 
