@@ -2,9 +2,9 @@
 
 # eslint exists
 eslint="./node_modules/.bin/eslint"
-if [ ! -f "$eslint" ]; then
+if [[ ! -f $eslint ]]; then
   eslint="eslint"
-  if [ ! -n "$(command -v eslint)" ]; then
+  if [[ ! -n $(command -v $eslint) ]]; then
     # has not eslint
     exit 0
   fi
@@ -12,21 +12,25 @@ fi
 
 
 # files
-files=`git diff --cached --name-only | egrep "(.js|vue)$"`
+files=$(git diff --cached --name-only | egrep "(.js|vue)$")
 
 
 # -deleted
 for file in $files; do
-  if [ ! -f "$file" ]; then
+  if [[ ! -f $file ]]; then
     files=${files//$file/""}
   fi
 done
 
 
 # has not files to eslint
-if [ -z "$files" ]; then
+if [[ -z $files ]]; then
+  echo "has not files to eslint"
   exit 0
 fi
+
+echo "$files"
+exit 1
 
 
 # fix
@@ -38,6 +42,7 @@ git add $files
 # echo error warning with color
 rs=${rs//": error "/"\033[31m [error] \033[0m"}
 # rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
+
 
 
 # # reject
