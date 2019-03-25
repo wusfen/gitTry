@@ -30,11 +30,10 @@ done
 # has not files to eslint
 files=$(echo "$files" | egrep -v "^$")
 if [ -z $files ]; then
-  echo "has not files to eslint"
+  # echo "has not files to eslint"
   exit 0
 fi
 
-exit 1
 
 # fix
 # add again

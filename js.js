@@ -1,3 +1,3 @@
-function name ( params ) {
-  params = 'abc' 
+function name  ( params ) {
+  params = 'abc'      
 }
