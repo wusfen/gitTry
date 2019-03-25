@@ -3,7 +3,7 @@
 
 # eslint exists
 eslint="./node_modules/.bin/eslint"
-if [ ! -f $eslint ]; then
+if [[ ! -f $eslint ]]; then
   eslint="eslint"
   if [[ ! -n $(command -v $eslint) ]]; then
     # has not eslint
@@ -21,7 +21,7 @@ files=$(git diff --cached --name-only | egrep "(.js|vue)$")
 
 # -deleted
 for file in $files; do
-  if [ ! -f $file ]; then
+  if [[ ! -f $file ]]; then
     files=$(echo "$files" | egrep -v "^$file$")
   fi
 done
