@@ -16,9 +16,9 @@ module.exports = {
     "eslint:recommended",
     // eslint-plugin-vue ***
     // "plugin:vue/base",
-    // "plugin:vue/essential",
+    "plugin:vue/essential",
     // "plugin:vue/recommended",
-    "plugin:vue/strongly-recommended",
+    // "plugin:vue/strongly-recommended",
   ],
   "rules": {
     // 缩进
