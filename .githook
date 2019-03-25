@@ -29,7 +29,7 @@ done
 
 # has not files to eslint
 files=$(echo "$files" | egrep -v "^$")
-if [ -z $files ]; then
+if [[ -z $files ]]; then
   # echo "has not files to eslint"
   exit 0
 fi
