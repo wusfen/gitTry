@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 
+# .git/hooks/pre-commit
+: << !
+#!/usr/bin/env bash
+if [ -f ".githook" ];then . ".githook";fi
+!
+
+
 # eslint exists
 eslint="./node_modules/.bin/eslint"
 if [[ ! -f $eslint ]]; then
@@ -42,7 +49,7 @@ git add $files
 
 
 # error warning with color
-rs=${rs//": error "/"\033[31m [error] \033[0m"}
+rs=${rs//": error "/" \033[31m [error] \033[0m "}
 # rs=${rs//": warning "/"\033[33m [warning] \033[0m"}
 rs=$(echo "$rs" | egrep "error")
 
