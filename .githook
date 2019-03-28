@@ -23,7 +23,8 @@ fi
 
 
 # files
-files=$(git diff --cached --name-only | egrep "(.js|vue)$")
+ext=".(js|jsx|ts|vue)$"
+files=$(git diff --cached --name-only | egrep $ext)
 
 
 # -deleted
@@ -44,7 +45,7 @@ fi
 
 # fix
 # add again
-rs=$($eslint $files --fix --format visualstudio)
+output=$($eslint $files --fix --format visualstudio)
 git add $files
 
 
