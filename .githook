@@ -41,8 +41,8 @@ fi
 
 
 # fix
-output=$($eslint $files --fix --format visualstudio)
-output=$($eslint $files --fix --quiet --format visualstudio)
+output=$($eslint $files --fix)
+output=$($eslint $files --quiet --format visualstudio)
 code=$?
 
 
