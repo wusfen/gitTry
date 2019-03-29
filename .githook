@@ -9,15 +9,14 @@ if [ -f ".githook" ]; then . ".githook"; fi
 
 
 # eslint exists
-eslint1="eslint"
-eslint2="./node_modules/.bin/eslint"
-if [[ $(command -v $eslint1) ]]; then
-  eslint=$eslint1
-elif [[ $(command -v $eslint1) ]]; then
-  eslint=$eslint2
-else
-  echo -e "\033[31m  please install eslint: npm i -g eslint  \033[0m"
-  exit 1
+eslint="./node_modules/.bin/eslint"
+if [[ ! $(command -v $eslint) ]]; then
+  eslint="eslint"
+  if [[ ! $(command -v $eslint) ]]; then
+    # npm i -g eslint
+    echo -e "\033[31m  please install eslint: npm i -g eslint  \033[0m"
+    exit 1
+  fi
 fi
 
 
@@ -36,7 +35,7 @@ done
 
 # has not files to eslint
 if [[ ! $(echo "$files" | egrep "\w") ]]; then
-  echo "has not files to eslint"
+  # echo "has not files to eslint"
   exit 0
 fi
 
